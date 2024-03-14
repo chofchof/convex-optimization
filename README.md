@@ -2,7 +2,7 @@
 
 **Amir Beck** (https://sites.google.com/site/amirbeck314/)
 
-- Professor of School of Mathematical Sciences, Tel-Aviv University
+- Professor of School of Mathematical Sciences at Tel-Aviv University
 
 **References**
 
@@ -13,28 +13,47 @@
 
 ## Chapter 8. Convex Optimization
 
-[Chapter8.html](https://htmlpreview.github.io/?https://github.com/chofchof/nonlinear-optimization/blob/main/Chapter8.html)
+[Chapter8.html](https://htmlpreview.github.io/?https://github.com/chofchof/convex-optimization/blob/main/NO_Chapter8.html)
 
 
 
 ## Chapter 9. Optimization over a Convex Set
 
-[Chapter9.html](https://htmlpreview.github.io/?https://github.com/chofchof/nonlinear-optimization/blob/main/Chapter9.html)
-
 
 
 ## Chapter 10. Optimality Conditions for Linearly Constrained Problems
-
-[Chapter10.html](https://htmlpreview.github.io/?https://github.com/chofchof/nonlinear-optimization/blob/main/Chapter10.html)
 
 
 
 ## Chapter 11. The KKT Conditions
 
-[Chapter11.html](https://htmlpreview.github.io/?https://github.com/chofchof/nonlinear-optimization/blob/main/Chapter11.html)
-
 
 
 ## Chapter 12. Duality
 
-[Chapter12.html](https://htmlpreview.github.io/?https://github.com/chofchof/nonlinear-optimization/blob/main/Chapter12.html)
+
+
+
+
+# Convex Optimization
+
+**Stephen Boyd** (https://en.wikipedia.org/wiki/Stephen_P._Boyd)
+
+- Samsung Professor of Engineering, Professor in Electrical Engineering, and professor by courtesy in Computer Science and Management Science & Engineering at Stanford University
+
+**Lieven Vandenberghe**
+
+- Professor of Electrical and Computer Engineering Department and Department of Mathematics at University of California, Los Angeles
+
+**References**
+
+- **Convex Optimization** (2004)
+  - Cambridge University Press, https://web.stanford.edu/~boyd/cvxbook/
+
+
+
+## Chapter 4. Convex optimization problems
+
+
+
+## Chapter 5. Duality
