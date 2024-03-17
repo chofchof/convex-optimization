@@ -1,40 +1,3 @@
-# Introduction to Nonlinear Optimization
-
-**Amir Beck** (https://sites.google.com/site/amirbeck314/)
-
-- Professor of School of Mathematical Sciences at Tel-Aviv University
-
-**References**
-
-- **Introduction to Nonlinear Optimization, Second Edition** (2023)
-  - MOS-SIAM Series on Optimization, ISBN 9781611977615 (paperback)
-
-
-
-## Chapter 8. Convex Optimization
-
-[Chapter8.html](https://htmlpreview.github.io/?https://github.com/chofchof/convex-optimization/blob/main/NO_Chapter8.html)
-
-
-
-## Chapter 9. Optimization over a Convex Set
-
-
-
-## Chapter 10. Optimality Conditions for Linearly Constrained Problems
-
-
-
-## Chapter 11. The KKT Conditions
-
-
-
-## Chapter 12. Duality
-
-
-
-
-
 # Convex Optimization
 
 **Stephen Boyd** (https://en.wikipedia.org/wiki/Stephen_P._Boyd)
@@ -54,6 +17,47 @@
 
 ## Chapter 4. Convex optimization problems
 
+[CO_Chapter4.html](https://htmlpreview.github.io/?https://github.com/chofchof/convex-optimization/blob/main/CO_Chapter4.html)
+
 
 
 ## Chapter 5. Duality
+
+
+
+
+
+# Introduction to Nonlinear Optimization
+
+**Amir Beck** (https://sites.google.com/site/amirbeck314/)
+
+- Professor of School of Mathematical Sciences at Tel-Aviv University
+
+**References**
+
+- **Introduction to Nonlinear Optimization, Second Edition** (2023)
+  - MOS-SIAM Series on Optimization, ISBN 9781611977615 (paperback)
+
+
+
+## Chapter 8. Convex Optimization
+
+[NO_Chapter8.html](https://htmlpreview.github.io/?https://github.com/chofchof/convex-optimization/blob/main/NO_Chapter8.html)
+
+
+
+## Chapter 9. Optimization over a Convex Set
+
+
+
+## Chapter 10. Optimality Conditions for Linearly Constrained Problems
+
+
+
+## Chapter 11. The KKT Conditions
+
+
+
+## Chapter 12. Duality
+
+
