@@ -12,8 +12,6 @@
 
 - **Convex Optimization** (2004)
   - Cambridge University Press, https://web.stanford.edu/~boyd/cvxbook/
-- **strutive07 블로그** (2020)
-  - https://strutive07.github.io/archive.html?tag=Convex_Optimization
 
 
 
@@ -117,6 +115,8 @@ $$
 $$
 and (4.1) are <u>equivalent</u>: If $x$ solves (4.1) then $z=\phi^{-1}(x)$ solves (4.4); if $z$ solves (4.4) then $x=\phi(z)$​ solves (4.1).
 
+
+
 ##### Transformation of objective and constraint functions
 
 Suppose $\psi_0\colon\mathbb{R}\to\mathbb{R}$ is <u>monotone increasing</u> on the image of $f_0$, and $\psi_i\colon\mathbb{R}\to\mathbb{R}$ satisfy $\psi_i(u)\leq 0 \Leftrightarrow u\leq 0$ and $\xi_j\colon\mathbb{R}\to\mathbb{R}$ satisfy $\xi_j(u)=0 \Leftrightarrow u=0$. Then the problem
@@ -133,6 +133,7 @@ and (4.1) are <u>equivalent</u>: The feasible sets are identical, and the optima
   <img src="figures/CO_example_4.3.png" style="zoom:80%;" />
 </figure>
 
+
 ##### Slack variables
 
 Notice that $f_i(x)\leq 0$ <u>if and only if</u> there is an $s_i\geq 0$ such that $f_i(x)+s_i=0$. The new variable $s_i$ is called the **slack variable** associated with $f_i(x)\leq 0$. Then the problem
@@ -146,6 +147,8 @@ $$
 $$
 is <u>equivalent</u> to (4.1).
 
+
+
 ##### Eliminating equality constraints
 
 If we can <u>explicitly parametrize</u> all solutions of $h_j(x)=0$ using some parameter $z\in\mathbb{R}^k$​, then we can eliminate $h_j(x)=0$ from the problem, as follows.
@@ -158,6 +161,8 @@ $$
 \end{align*}
 $$
 is <u>equivalent</u> to (4.1).
+
+
 
 ##### Eliminating linear equality constraints
 
@@ -173,6 +178,8 @@ $$
 \end{align*}
 $$
 is <u>equivalent</u> to (4.1).
+
+
 
 ##### Introducing equality constraints
 
@@ -197,6 +204,8 @@ $$
 $$
 This problem has $\sum_{i=0}^m k_i$ new variables and $\sum_{i=0}^m k_i$ new equality constraints. However, the objective ($y_0$) and inequality constraints ($y_1,\dotsc,y_m$) are <u>independent</u>, i.e., involve different optimization variables.
 
+
+
 ##### Optimizing over some variables
 
 Suppose $x\in\mathbb{R}^n$ is partitioned as $x=(x_1,x_2)$ with $x_i\in\mathbb{R}^{n_i}$ and $n_1+n_2=n$. Consider the problem
@@ -218,6 +227,8 @@ $$
 <figure style="text-align: left; padding-top: .5em; padding-bottom: .5em;">
   <img src="figures/CO_example_4.4.png" style="zoom:80%;" />
 </figure>
+
+
 ##### Epigraph problem form
 
 The epigraph form of (4.1) is the problem
@@ -243,6 +254,8 @@ The objective and constraint functions have some analytical or closed form, i.e.
 
 For example, $f_0(x)=\frac{1}{2}x^TPx+q^Tx+r$. Here, $P\in\mathbb{R}^{n\times n}_\text{sym}$, $q\in\mathbb{R}^n$ and $r\in\mathbb{R}$ are problem parameters.
 
+
+
 ##### Oracle problem description
 
 The objective and constraint functions are described by <u>oracle models</u> (which are also called <u>black box</u> or <u>subroutine models</u>).
@@ -252,6 +265,24 @@ In an oracle model, we do not know $f$ explicitly, but can evaluate $f(x)$ (and 
 
 
 ### 4.2 Convex optimization
+
+> A function $f\colon\mathbb{R}^n\to\mathbb{R}$ is **convex** if $\operatorname{Dom}f$ is a <u>convex set</u> and
+> $$
+> f(\theta x + (1-\theta)y) \leq \theta f(x) + (1-\theta)f(y) \tag{3.1}
+> $$
+> for all $x,y\in\operatorname{Dom}f$ and $\theta\in[0,1]$​.
+>
+> <img src="figures/CO_figure_3.1.png" style="zoom:80%;" />
+>
+> A function $f$ is **strictly convex** if strict inequality holds in (3.1) whenever $x\neq y$ and $\theta\in[0,1]$. We say $f$ is **concave** if $-f$ is convex, and **strictly concave** if $-f$​​ is strictly convex.
+
+> The $\alpha$-**sublevel set** of a function $f\colon\mathbb{R}^n\to\mathbb{R}$ is defined as
+> $$
+> S_\alpha = \{x\in\operatorname{Dom}f\mid f(x)\leq\alpha\}.
+> $$
+> <u>Sublevel sets of a convex function are convex</u>, for any $\alpha\in\mathbb{R}$. <u>The converse is not true</u>. For example, $f(x)=-e^x$ is not convex on $\mathbb{R}$ but all its sublevel sets are convex.
+
+
 
 #### 4.2.1 Convex optimization problems in standard form
 
@@ -267,19 +298,13 @@ where $f_i$ are <u>convex</u> functions for all $0\leq i\leq m$​, and $h_j$ ar
 
 <u>We may assume without loss of generality that</u> $a_j\neq0$: If $a_j=b_j=0$, the $j$-th equality constraint can be deleted; if $a_j=0$ and $b_j\neq0$, the $j$-th equality constraint is inconsistent and the problem is infeasible.
 
-<u>The feasible set of a convex optimization problem is convex</u>, since it is the intersection of the (convex) domain $\mathcal{D}$ with $m$ (convex) sublevel sets and $p$ hyperplanes. Thus, we minimize a convex objective function over a convex set.
+<u>The feasible set of a convex optimization problem is convex</u>, since it is the intersection of the (convex) domain $\mathcal{D}$ with $m$ (convex) sublevel sets and $p$​ hyperplanes. Thus, we minimize a convex objective function over a convex set.
 
-> A function $f\colon\mathbb{R}\to\mathbb{R}$ is called **quasiconvex** if its domain and all its sublevel sets $S_\alpha=\{x\in\operatorname{Dom}f\mid f(x)\leq\alpha\}$ for $\alpha\in\mathbb{R}$​​ are convex.
->
-> A function is **quasiconcave** if $-f$ is quasiconvex. A function that is both quasiconvex and quasiconcave is called **quasilinear**.
->
-> <img src="figures/CO_figure_3.9.png" style="zoom:80%;" />
-
-If $f_0$ is <u>quasiconvex</u>, we say (4.15) is a (standard form) **quasiconvex optimization problem**.
-
-<u>The $\epsilon$-suboptimal sets are convex</u> for a convex or quasiconvex optimization problem, since the sublevel sets of a convex or quasiconvex function are convex. In particular, <u>the optimal set is convex</u>.
+<u>The $\epsilon$-suboptimal sets are convex</u>. In particular, <u>the optimal set is convex</u>.
 
 If the objective is <u>strictly convex</u>, the optimal set contains <u>at most one point</u>.
+
+
 
 ##### Concave maximization problems
 
@@ -291,13 +316,13 @@ $$
 \end{align*} \tag{4.16}
 $$
 
-where $f_0$ is <u>concave</u> and $f_i$ are <u>convex</u> for all $1\leq i\leq m$. This problem can be solved by minimizing $-f_0$. In a similar way (4.16) is called **quasiconcave** if $f_0$ is quasiconcave.
+where $f_0$ is <u>concave</u> and $f_i$ are <u>convex</u> for all $1\leq i\leq m$. This problem can be solved by minimizing $-f_0$.
 
 
 
 #### 4.2.2 Local and global optima
 
-Any <u>locally optimal</u> point is also <u>(globally) optimal</u>.
+A fundamental property of convex optimization problems is that <u>any locally optimal point is also (globally) optimal</u>.
 
 > _Proof._ Suppose $x$ is <u>locally optimal</u>, i.e., $x$ is feasible and for some $R>0$,
 > $$
@@ -313,24 +338,24 @@ Any <u>locally optimal</u> point is also <u>(globally) optimal</u>.
 > $$
 > which contradicts (4.19). Hence, $x$ is globally optimal.
 
-It is <u>not true</u> that locally optimal points of <u>quasiconvex optimization problems</u> are globally optimal.
-
-<img src="figures/CO_figure_4.3.png" style="zoom:80%;" />
 
 
+#### 4.2.3 An optimality criterion for differentiable $f_0$​
 
-#### 4.2.3 An optimality criterion for differentiable $f_0$
+>##### First-order conditions for convexity
+>
+>Suppose $f$ is differentiable. Then $f$ is convex <u>if and only if</u> $\operatorname{Dom}f$ is convex and
+>$$
+>f(y) \geq f(x) + \nabla f(x)^T(y-x) \tag{4.20}
+>$$
+>holds for all $x,y\in\operatorname{Dom}f$ (see $\S$3.1.3).
 
-Suppose $f_0$ is <u>differentiable</u>. Then $x$ is optimal <u>if and only if</u> $x$ is feasible and
+Suppose that the objective $f_0$ in a convex optimization problem is <u>differentiable</u>. Then $x$ is optimal <u>if and only if</u> $x$ is feasible and
 $$
 \nabla f_0(x)^T(y-x) \geq 0 \quad\text{for all feasible $y$}. \tag{4.21}
 $$
 
-> Suppose $f$ is differentiable. Then $f$ is convex <u>if and only if</u> $\operatorname{Dom}f$ is convex and
-> $$
-> f(y) \geq f(x) + \nabla f(x)^T(y-x) \tag{4.20}
-> $$
->  holds for all $x,y\in\operatorname{Dom}f$​ (see $\S$3.1.3).
+
 
 <img src="figures/CO_figure_4.2.png" style="zoom:80%;" />
 
@@ -341,9 +366,11 @@ $$
 > \frac{d}{dt}f_0(z(t))\Big|_{t=0} = \nabla f_0(x)^T(y-x) < 0.
 > $$
 
+
+
 ##### Unconstrained problems
 
-For an <u>unconstrained</u> problem, (4.21) reduces to
+For an <u>unconstrained</u> problem, (4.21) reduces to the well-known necessary and sufficient condition
 $$
 \nabla f_0(x) = 0 \tag{4.22}
 $$
@@ -356,12 +383,6 @@ There are several possible situations, depending on the number of solutions of (
   2. The optimal value is <u>finite</u>, but <u>not achieved</u>.
 - We can have <u>multiple solutions</u> of (4.22), in which case each such solution is a minimizer of $f_0$​.
 
->Consider the problem of minimizing $f_0(\mathbf{x})=\frac{1}{2}\mathbf{x}^TP\mathbf{x}+q^T\mathbf{x}$, where $P\succeq 0$ and $\mathbf{x}=\begin{bmatrix}x\\ y\end{bmatrix}$.
->
->- If $P=\begin{bmatrix}1&0\\0&0\end{bmatrix}$ and $q=\begin{bmatrix}0\\1\end{bmatrix}$, then $f_0(x,y)=\frac{1}{2}x^2+y\to-\infty$ as $y\to-\infty$ for any fixed $x$.
->- If $P=I\succ 0$ and $q=0$, then $f_0(x,y)=\frac{1}{2}(x^2+y^2)$ and $(0,0)$ is the unique minimizer.
->- If $P=\begin{bmatrix}1&0\\0&0\end{bmatrix}$ and $q=\begin{bmatrix}1\\0\end{bmatrix}$, then $f_0(x,y)=\frac{1}{2}x^2+x$ has a minimum at the affine space $\{(-1,y)\mid y\in\mathbb{R}\}$​​.
-
 <figure style="text-align: left; padding-top: .5em; padding-bottom: .5em;">
   <img src="figures/CO_example_4.5.png" style="zoom:80%;" />
 </figure>
@@ -371,6 +392,7 @@ There are several possible situations, depending on the number of solutions of (
 <figure style="text-align: left; padding-top: .5em; padding-bottom: .5em;">
   <img src="figures/CO_example_4.6.png" style="zoom:80%;" />
 </figure>
+
 
 ##### Problems with equality constraints only
 
@@ -396,6 +418,8 @@ Together with $Ax=b$ (since $x$​​ is feasible), this is the classical <u>Lag
 $$
 f_0(x)+(Ax-b)^T\nu.
 $$
+
+
 
 ##### Minimization over the nonnegative orthant (e.g. 사분면 or 팔분면)
 
@@ -440,6 +464,8 @@ Since <u>the composition of a convex function with an affine function is convex<
 
 In many cases, however, <u>it is better to retain the equality constraints</u>, since eliminating them can make the problem harder to understand and analyze, or ruin the efficiency of an algorithm that solves it.
 
+
+
 ##### Introducing equality constraints
 
 >Consider the problem
@@ -462,6 +488,8 @@ In many cases, however, <u>it is better to retain the equality constraints</u>, 
 
 If we introduce new variables and <u>linear equality constraints</u> into a convex optimization problem, the resulting problem will also be <u>convex</u>.
 
+
+
 ##### Slack variables
 
 >The slack variables $s_i$ associated with $f_i(x)\leq 0$ give the equivalent problem
@@ -475,6 +503,8 @@ If we introduce new variables and <u>linear equality constraints</u> into a conv
 >$$
 
 Since equality constraint must be affine in a convex problem, we must have $f_i$ <u>affine</u> for $1\leq i\leq m$.
+
+
 
 ##### Epigraph problem form
 
@@ -491,6 +521,8 @@ Since equality constraint must be affine in a convex problem, we must have $f_i$
 The objective is linear (hence convex) and the new constraint $f_0(x)-t$​ is also convex, so <u>the epigraph form problem is convex</u> as well.
 
 The <u>epigraph form</u> of a convex problem <u>has several practical uses</u>. We can simplify theoretical analysis. It can also simplify algorithm development.
+
+
 
 ##### Minimizing over some variables
 
@@ -512,13 +544,19 @@ The <u>epigraph form</u> of a convex problem <u>has several practical uses</u>. 
 
 > If $f$ is convex in $(x,y)$, and $C$ is a convex nonempty set, then $g(x)=\inf_{y\in C}f(x,y)$ is convex in $x$, provided $g(x)>-\infty$ for all $x$, (see $\S$3.2.5).
 
-Mimimizing a convex function over some variables preserves convexity. Therefore, if $f_0$ in (4.9) is <u>convex</u> in $(x_1,x_2)$, and $f_i$ and $\tilde f_i$ are <u>convex</u>, then the equivalent problem (4.10) is <u>convex</u>.
+Minimizing a convex function over some variables preserves convexity. Therefore, if $f_0$ in (4.9) is <u>convex</u> in $(x_1,x_2)$, and $f_i$ and $\tilde f_i$ are <u>convex</u>, then the equivalent problem (4.10) is <u>convex</u>.
 
 
 
 #### 4.2.5 Quasiconvex optimization
 
-Recall that a **quasiconvex optimization problem** has the standard form
+> A function $f\colon\mathbb{R}\to\mathbb{R}$ is called **quasiconvex** if its domain and all its sublevel sets $S_\alpha=\{x\in\operatorname{Dom}f\mid f(x)\leq\alpha\}$ for $\alpha\in\mathbb{R}$​​ are convex.
+>
+> <img src="figures/CO_figure_3.9.png" style="zoom:80%;" />
+>
+> A function is **quasiconcave** if $-f$ is quasiconvex. A function that is both quasiconvex and quasiconcave is called **quasilinear**.
+
+If the objective $f_0$ in a convex optimization problem (4.15) is <u>quasiconvex</u>, we have a (standard form) **quasiconvex optimization problem**
 $$
 \begin{align*}
 \text{minimize}  &\qquad f_0(x) \\
@@ -528,43 +566,70 @@ $$
 $$
 where $f_0$ is <u>quasiconvex</u> and $f_i$ are <u>convex</u> for $1\leq i\leq m$.
 
+In a similar way, if $f_0$ in a concave optimization problem (4.16) is <u>quasiconcave</u>, we have a (standard form) **quasiconcave optimization problem**
+$$
+\begin{align*}
+\text{maximize}  &\qquad f_0(x) \\
+\text{subject to} &\qquad f_i(x)\leq 0, \quad 1\leq i\leq m \\
+&\qquad Ax=b,
+\end{align*}
+$$
+where $f_0$ is <u>quasiconcave</u> and $f_i$ are <u>convex</u> for $1\leq i\leq m$.
+
+<u>The $\epsilon$-suboptimal sets are also convex</u> for a quasiconvex optimization problem. In particular, <u>the optimal set is convex</u>.
+
+
+
 ##### Locally optimal solutions and optimality conditions
 
-A quasiconvex optimization problem can have locally optimal solutions that are not (globally) optimal.
+A quasiconvex optimization problem can have <u>locally optimal solutions that are not (globally) optimal</u>.
 
 <img src="figures/CO_figure_4.3.png" style="zoom:80%;" />
 
-Nevertheless, a variation of the optimality condition (4.21) does hold for quasiconvex optimization problems with differentiable objective function.
-
 > ##### First-order conditions for quasiconvexity
 >
-> Suppose $f$ is differentiable. Then $f$ is quasiconvex <u>if and only if</u> $\operatorname{Dom}f$ is convex and
+> A <u>differentiable</u> function $f\colon\mathbb{R}^n\to\mathbb{R}$ with <u>convex domain</u> is quasiconvex <u>if and only if</u>
 > $$
 > f(y)\leq f(x) \implies \nabla f(x)^T(y-x)\leq 0 \quad\text{for all $x,y\in\operatorname{Dom}f$}. \tag{3.20}
 > $$
 > <img src="figures/CO_figure_3.12.png" style="zoom:80%;" />
 
-The first-order condition for quasiconvexity implies that $x$ is <u>optimal if</u>
+> In a convex optimization problem, $x$ is optimal <u>if and only if</u> $x$ is feasible and
+> $$
+> \nabla f_0(x)^T(y-x) \geq 0 \quad\text{for all feasible $y$} \tag{4.21}
+> $$
+
+The first-order condition for quasiconvexity implies that $x$ is optimal <u>if</u> $x$ is feasible and
 $$
-\text{$x$ is feasible}, \qquad \nabla f_0(x)^T(y-x)>0 \quad\text{for all $y\neq x$ feasible}. \tag{4.25}
+\nabla f_0(x)^T(y-x)>0 \quad\text{for all $y\neq x$ feasible}. \tag{4.25}
 $$
 
 - (4.25) is <u>only sufficient</u> for optimality, whereas (4.21) is necessary and sufficient.
 - (4.25) requires $\nabla f_0\neq 0$, whereas (4.21) does not. 
 
+
+
 ##### Quasiconvex optimization via convex feasibility problems
 
-> If $f$ is quasiconvex, there exists a family of <u>convex</u> functions $\phi_t$ such that
+> If $f$ is quasiconvex, there exists a <u>family of convex functions</u> $\phi_t$ such that
 > $$
 > f(x)\leq t \iff \phi_t(x)\leq 0, \tag{3.23}
 > $$
 > i.e., the $t$-sublevel set of $f$ is the 0-sublevel set of $\phi_t$, (see $\S$3.4.5).
 >
+> Such a representation <u>always exists</u>, we can take
+> $$
+> \phi_t(x) = \begin{cases} 0, & f(x)\leq t, \\ \infty & \text{otherwise}. \end{cases}
+> $$
+> However, we are usually interested in a family $\phi_t$ with nice properties, such as differentiability.
+>
 > <figure style="text-align: left; padding-top: .5em; padding-bottom: .5em;">
->   <img src="figures/CO_example_3.8.png" style="zoom:80%;" />
+> <img src="figures/CO_example_3.8.png" style="zoom:80%;" />
 > </figure>
 
-Let $p^*$ be the optimal value of the quasiconvex optimization problem (4.24). Consider the <u>convex feasibility</u> problem for a given value $t$,
+Let $\phi_t$ be a family of convex functions that satisfy $f_0(x)\leq t\iff\phi_t(x)\leq 0$ and also $\phi_s(x)\leq\phi_t(x)$ whenever $s\geq t$.
+
+Let $p^*$ be the optimal value of the quasiconvex optimization problem (4.24). Consider the <u>convex feasibility problem</u> for a given value $t$,
 $$
 \begin{align*}
 \text{find}  &\qquad x \\
@@ -573,10 +638,477 @@ $$
 &\qquad Ax=b.
 \end{align*} \tag{4.26}
 $$
-If (4.26) has a feasible point $x$, then $p^*\leq t$, and $x$ is feasible for the quasiconvex problem (4.24) and $f_0(x)\leq t$. Conversely, if (4.26) is infeasible, then $p^*\geq t$.
+If (4.26) has a feasible point $x$, then $p^*\leq t$. Conversely, if (4.26) is infeasible, then $p^*\geq t$.
 
 <figure style="text-align: left; padding-top: .5em; padding-bottom: .5em;">
   <img src="figures/CO_algorithm_4.1.png" style="zoom:80%;" />
 </figure>
 
 It follows that exactly $k=\lceil\log_2((u-l)/\epsilon)\rceil$ iterations are required before the algorithm terminates, since $\dfrac{u-l}{2^k}\leq\epsilon$.
+
+
+
+### 4.3 Linear optimization problems
+
+If the objective and all constraint functions are <u>affine</u>, the problem is called a **linear program (LP)**. A <u>general linear program</u> has the form
+$$
+\begin{align*}
+\text{minimize} &\qquad c^Tx + d \\
+\text{subject to} &\qquad Gx \succeq h \\
+&\qquad Ax=b,
+\end{align*} \tag{4.27}
+$$
+where $G\in\mathbb{R}^{m\times n}$ and $A\in\mathbb{R}^{p\times n}$. Linear programs are, of course, convex optimization problems.
+
+It is common to <u>omit the constant</u> $d$ in the objective function, since it does not affect the optimal set.
+
+<img src="figures/CO_figure_4.4.png" style="zoom:80%;" />
+
+
+
+##### Standard and inequality form linear programs
+
+In a **standard form LP**
+$$
+\begin{align*}
+\text{minimize} &\qquad c^Tx \\
+\text{subject to} &\qquad Ax=b \\
+&\qquad x\succeq 0.
+\end{align*} \tag{4.28}
+$$
+If the LP has <u>no equality constraints</u>, it is called an **inequality form LP**
+$$
+\begin{align*}
+\text{minimize} &\qquad c^Tx \\
+\text{subject to} &\qquad Ax\preceq b.
+\end{align*} \tag{4.29}
+$$
+
+
+
+##### Converting LPs to standard form
+
+It is sometimes useful to transform (4.27) to (4.28).
+
+1. Introduce <u>slack variables</u> $s_i$ for the inequalities, which results in
+   $$
+   \begin{align*}
+   \text{minimize} &\qquad c^Tx +d \\
+   \text{subject to} &\qquad Gx+s=h \\
+   &\qquad Ax=b \\
+   &\qquad s\succeq 0.
+   \end{align*}
+   $$
+
+2. Express $x=x^+-x^-$ for $x^+,x^-\in\mathbb{R}_{\geq0}$. This yields an LP in standard form.
+   $$
+   \begin{align*}
+   \text{minimize} &\qquad c^Tx^+ - c^Tx^- + d \\
+   \text{subject to} &\qquad Gx^+ - Gx^- + s = h \\
+   &\qquad Ax^+ - Ax^- = b \\
+   &\qquad x^+\succeq 0, \quad x^-\succeq 0, \quad s\succeq 0.
+   \end{align*}
+   $$
+
+
+
+#### 4.3.1 Examples
+
+##### Diet problem
+
+A healthy diet contains $m$ <u>different nutrients</u> in quantities at least equal to $b_1\dotsc,b_m$. We can compose such a diet by choosing nonnegative quantities $x_1,\dotsc,x_n$ of $n$ <u>different foods</u>. One unit quantity of food $j$ contains an amount $a_{ij}$ of nutrient $i$, and has a cost of $c_j$.
+
+We want to determine the <u>cheapest diet</u> that satisfies the nutritional requirements. The problem can be formulated as the LP
+$$
+\begin{align*}
+\text{minimize} &\qquad c^Tx \\
+\text{subject to} &\qquad Ax\succeq b \\
+&\qquad x\succeq 0.
+\end{align*}
+$$
+
+
+##### Chebyshev center of a polyhedron
+
+Consider the problem of finding the <u>largest Euclidean ball</u> (e.g., 내접원) that lies in a polyhedron
+$$
+\mathcal{P}=\{x\in\mathbb{R}^n\mid a_i^Tx\leq b_i,\,1\leq i\leq m\}.
+$$
+The center of the optimal ball (called the **Chebyshev center** of $\mathcal{P}$) can be determined by solving the LP
+$$
+\begin{align*}
+\text{maximize} &\qquad r \\
+\text{subject to} &\qquad a_i^Tx_c + r\|a_i\|_2\leq b_i, \quad 1\leq i\leq m.
+\end{align*}
+$$
+
+> _Proof._ The constraint $\{x_c+u\mid \|u\|_2\leq r\}\subseteq\mathcal{P} $, i.e., $\|u\|_2\leq r \Rightarrow a_i^T(x_c+u)\leq b_i$ can be written as
+> $$
+> a_i^Tx_c+\sup\{a_i^Tu\mid \|u\|_2\leq r\}=a_i^Tx_c+r\|a_i\|_2\leq b_i.
+> $$
+
+
+
+##### Dynamic activity planning (skip)
+
+
+
+##### Chebyshev inequalities
+
+Consider a <u>probability distribution</u> $p\in\mathbb{R}^n$ for a <u>discrete random variable</u> $x$ on $\{u_1,\dotsc,u_n\}\subseteq\mathbb{R}$, where $p_k=\operatorname{prob}(x=u_k)$. Then $p\succeq 0$ and $\mathbf{1}^T p=1$. Conversely, if $p\in\mathbb{R}^n$ satisfies $p\succeq 0$ and $\mathbf{1}^T p=1$, it defines a probability distribution for $x$.
+
+Suppose we know <u>upper and lower bounds</u> on $\mathbb{E}[f_i]=\sum_k p_kf_i(u_k)$ for some functions $f_i$ of $x$. It can be expressed as linear inequality constraints on $p$,
+$$
+\alpha_i \leq a_i^Tp \leq \beta_i, \quad 1\leq i\leq m.
+$$
+<u>The problem is to give lower and upper bounds</u> on $\mathbb{E}[f_0]=a_0^Tp$, where $f_0$ is some function of $x$. The optimal value of the LP
+$$
+\begin{align*}
+\text{minimize} &\qquad a_0^Tp \\
+\text{subject to} &\qquad p\succeq 0, \quad \mathbf{1}^Tp=1 \\
+&\qquad \alpha_i \leq a_i^Tp \leq \beta_i, \quad 1\leq i\leq m.
+\end{align*}
+$$
+gives the lowest possible value of $\mathbb{E}[f_0]$ for any distribution. Moreover, the bound is sharp: The optimal solution achieves the lower bound. In a similar way, we can find the best upper bound by maximizing $a_0^Tp$ subject to the same constraints.
+
+
+
+##### Piecewise-linear minimization
+
+Consider the (unconstrained) <u>problem of minimizing the piecewise-linear, convex function</u>
+$$
+f(x) = \max_{1\leq i\leq m} (a_i^Tx+b_i).
+$$
+This problem can be transformed to an equivalent LP (the epigraph problem)
+$$
+\begin{align*}
+\text{minimize} &\qquad t \\
+\text{subject to} &\qquad a_i^Tx+b_i\leq t, \quad 1\leq i\leq m.
+\end{align*}
+$$
+
+
+
+#### 4.3.2 Linear-fractional programming
+
+The problem of <u>minimizing a ratio of affine functions over a polyhedron</u> is called a **linear-fractional problem**
+$$
+\begin{align*}
+\text{minimize} &\qquad f_0(x) \\
+\text{subject to} &\qquad Gx\preceq h \\
+&\qquad Ax=b
+\end{align*} \tag{4.32}
+$$
+where $f_0(x)=\dfrac{c^Tx+d}{e^Tx+f}$ and $\operatorname{Dom}f_0=\{x\mid e^Tx+f>0\}$​​.
+
+> <figure style="text-align: left; padding-top: .5em; padding-bottom: .5em;">
+> <img src="figures/CO_example_3.32.png" style="zoom:80%;" />
+> </figure>
+
+The objective function $f_0$​ is quasiconvex (in fact, quasilinear) so (4.32) is a <u>quasiconvex optimization problem</u>.
+
+
+
+##### Transforming to a linear program
+
+If the feasible set $\{x\mid Gx\preceq h,\,Ax=b,\,e^Tx+f>0\}\neq\varnothing$, then (4.32) can be transformed to an equivalent LP
+$$
+\begin{align*}
+\text{minimize} &\qquad c^Ty+dz \\
+\text{subject to} &\qquad Gy-hz\preceq 0 \\
+&\qquad Ay-bz = 0 \\
+&\qquad e^Ty+fz = 1 \\
+&\qquad z\geq 0.
+\end{align*} \tag{4.33}
+$$
+
+> _Proof._ Let $p^*$ and $q^*$ be the optimal value of (4.32) and (4.33), respectively. Then $p^*=q^*$.
+>
+> ($p^*\geq q^*$) If $x$ is feasible in (4.32), then the pair $y=\dfrac{x}{e^Tx+f}$ and $z=\dfrac{1}{e^Tx+f}>0$ is feasible in (4.33) with the same objective value $c^Ty+dz=f_0(x)$.
+>
+> ($p^*\leq q^*$) Suppose $(y,z)$ is feasible in (4.33). If $z\neq 0$, then $x=y/z$ is feasible in (4.32) with the same objective value $f_0(x)=c^Ty+dz$. On the other hands, if $z=0$, let $x_0$ is a feasible for (4.32). Then $x=x_0+ty$ is feasible in (4.32) for all $t\geq 0$. Moreover, $\lim_{t\to\infty}f_0(x_0+ty)=c^Ty/e^Ty=c^Ty+dz$, since $e^Ty+fz=1$ and $z=0$. Thus we can find feasible points in (4.32) with objective values arbitrarily close to the objective value of $(y,z)$​.
+
+
+
+##### Generalized linear-fractional programming
+
+A generalization of (4.32) is the **generalized linear-fractional program** in which
+$$
+f_0(x) = \max_{1\leq i\leq r}\frac{c_i^Tx+d_i}{e_i^Tx+f_i}, \quad \operatorname{Dom}f_0 = \{x\mid e_i^Tx+f_i>0\text{ for $1\leq i\leq r$}\}.
+$$
+The objective function $f_0(x)$ is the pointwise maximum of $r$​​ quasiconvex functions, and therefore quasiconvex, so this problem is quasiconvex.
+
+> A <u>nonnegative weighted maximum of quasiconvex functions</u>, i.e., $f=\max\{w_1f_1,\dotsc,w_mf_m\}$ with $w_i\geq0$ and $f_i$ quasiconvex, <u>is quasiconvex</u>, (see $\S$3.4.4.)
+>
+> ($\because$) The $\alpha$-sublevel set of $f$ is the intersection of the $\alpha$-sublevel sets of $w_if_i$.
+
+<figure style="text-align: left; padding-top: .5em; padding-bottom: .5em;">
+<img src="figures/CO_example_4.7.png" style="zoom:80%;" />
+</figure>
+
+
+### 4,4 Quadratic optimization problems
+
+The convex optimization problem (4.15) is called a **quadratic program (QP)** if the objective $f_0$​ is (convex) <u>quadratic</u>, and the constraint functions are <u>affine</u>.
+$$
+\begin{align*}
+\text{minimize} &\qquad \tfrac{1}{2}x^TPx + q^Tx + r \\
+\text{subject to} &\qquad Gx \preceq h \\
+&\qquad Ax=b,
+\end{align*} \tag{4.34}
+$$
+where $P\in\mathbb{R}^{n\times n}_{\succeq 0}$, $G\in\mathbb{R}^{m\times n}$, and $A\in\mathbb{R}^{p\times n}$​.
+
+<img src="figures/CO_figure_4.5.png" style="zoom:80%;" />
+
+If the objective in (4.15) as well as the inequality constraint functions are (convex) quadratic, the problem is called a **quadratically constrained quadratic program (QCQP)**.
+$$
+\begin{align*}
+\text{minimize} &\qquad \tfrac{1}{2}x^TP_0x + q_0^Tx + r_0 \\
+\text{subject to} &\qquad \tfrac{1}{2}x^TP_ix + q_i^Tx + r_i \leq 0, \quad 1\leq i\leq m \\
+&\qquad Ax=b,
+\end{align*} \tag{4.35}
+$$
+where $P_i\in\mathbb{R}^{n\times n}_{\succeq 0}$ and $A\in\mathbb{R}^{p\times n}$​. Notice that **LP** $\subset$ **QP** $\subset$ **QCQP**.
+
+
+
+#### 4.4.1 Examples
+
+##### Least-squares and regression
+
+The problem of minimizing
+$$
+\|Ax-b\|_2^2=x^TA^TAx-2b^TAx+b^Tb
+$$
+is an (unconstrained) QP (called **regression analysis** or **least-squares approximation**), which has the <u>well known analytical solution</u> $x=A^\dagger b$, where $A^\dagger$ is the pseudo-inverse of $A$.
+
+When linear inequality constraints are added (called **constrained regression** or **constrained least-square**), there is <u>no longer a simple analytical solution</u>. As an example of QP,
+$$
+\begin{align*}
+\text{minimize} &\qquad \|Ax-b\|_2^2 \\
+\text{subject to} &\qquad l_i\leq x_i\leq u_i, \quad 1\leq i\leq n.
+\end{align*}
+$$
+
+
+
+##### Distance between polyhedra
+
+The (Euclidean) distance between the two polyhedra $\mathcal{P}_i=\{x\in\mathbb{R}^n\mid A_ix\preceq b_i\}$ for $i=1,2$ is defined as
+$$
+\operatorname{dist}(\mathcal{P}_1,\mathcal{P}_2) = \inf\bigl\{\|x_1-x_2\|_2\bigm| x_i\in\mathcal{P}_i\text{ for $i=1,2$}\bigr\}.
+$$
+To find $\operatorname{dist}(\mathcal{P}_1,\mathcal{P}_2)$, we can solve the QP
+$$
+\begin{align*}
+\text{minimize} &\qquad \|x_1-x_2\|_2^2 \\
+\text{subject to} &\qquad A_ix_i\preceq b_i, \quad i=1,2.
+\end{align*}
+$$
+This problem is infeasible <u>if and only if</u> one of $\mathcal{P}_i=\varnothing$.
+
+The optimal value is zero <u>if and only if</u> $\mathcal{P}_1\cap\mathcal{P}_2\neq\varnothing$, in which case the optimal $x_1=x_2\in\mathcal{P}_1\cap\mathcal{P}_2$. Otherwise the optimal $x_1\in\mathcal{P}_1$ and $x_2\in\mathcal{P}_2$ are closest to each other.
+
+
+
+##### Bounding variance
+
+>Consider a <u>probability distribution</u> $p\in\mathbb{R}^n$ for a <u>discrete random variable</u> $x$ on $\{u_1,\dotsc,u_n\}\subseteq\mathbb{R}$, where $p_k=\operatorname{prob}(x=u_k)$.
+
+For a function $f$ on $x$, we have $\mathbb{E}[f]=\sum_k f_kp_k$ where $f_k=f(u_k)$, and the variance of $f$ is
+$$
+\operatorname{Var}[f] = \mathbb{E}[f^2] - \mathbb{E}[f]^2 = \sum_k f_k^2p_k - \Bigr(\sum_k f_kp_k\Bigl)^2,
+$$
+which is a <u>concave quadratic</u> function on $p$​.
+
+We can <u>maximize the variance</u> of $f$, subject to the given prior information, by solving the QP
+$$
+\begin{align*}
+\text{maximize} &\qquad \sum_k f_k^2p_k-\Bigl(\sum_k f_kp_k\Bigr)^2 \\
+\text{subject to} &\qquad p\succeq 0, \quad \mathbf{1}^Tp=1 \\
+&\qquad \alpha_i\leq a_i^Tp\leq \beta_i, \quad 1\leq i\leq m.
+\end{align*}
+$$
+
+
+
+##### Linear program with random cost
+
+We consider an LP
+$$
+\begin{align*}
+\text{minimize} &\qquad c^Tx \\
+\text{subject to} &\qquad Gx\preceq h \\
+&\qquad Ax=b.
+\end{align*}
+$$
+Suppose the cost vector $c\in\mathbb{R}^n$ is <u>random</u>, with mean value $\bar c$ and covariance $\Sigma=\mathbb{E}[(c-\bar c)(c-\bar c)^T]$​.
+
+For $x\in\mathbb{R}^n$, the cost $c^Tx$ is a (scalar) random variable with mean $\mathbb{E}[c^Tx]=\bar c^Tx$ and variance
+$$
+\operatorname{Var}[c^Tx] = \mathbb{E}[(c^Tx-\mathbb{E}[c^Tx])^2] = x^T\Sigma x.
+$$
+In general, there is a trade-off between small expected cost and small cost variance. One way to take variance into account is to minimize a linear combination
+$$
+\mathbb{E}[c^Tx] + \gamma\operatorname{Var}[c^Tx] = \bar c^Tx + \gamma x^T\Sigma x
+$$
+which is called the **risk-sensitive cost**. The parameter $\gamma\geq 0$ is called the **risk-aversion** (or **risk-avoiding**) parameter. For $\gamma>0$, we are willing to trade off an increase in expected cost for a sufficiently large decrease in cost variance.
+
+To minimize the risk-sensitive cost we solve the QP
+$$
+\begin{align*}
+\text{minimize} &\qquad \bar c^Tx + \gamma x^T\Sigma x \\
+\text{subject to} &\qquad Gx\preceq h \\
+&\qquad Ax=b.
+\end{align*}
+$$
+
+
+
+##### Markowitz portfolio optimization (skip)
+
+We consider a classical portfolio problem with $n$ assets or stocks held over a period of time.
+
+Let $x_i$ denote the amount of asset $i$ held throughout the period, with $x_i$ in dollars, at the price at the beginning of the period. A normal long position in asset $i$ corresponds to $x_i>0$; a short position in asset $i$ corresponds to $x_i<0$.
+
+Let $p_i$ denote the relative price change of asset $i$ over the period. The overall return on the portfolio is $r=p^Tx$ (given in dollars). The optimization variable is the portfolio vector $x\in\mathbb{R}^n$.
+
+We take a stochastic model for price changes: $p\in\mathbb{R}^n$ is a random vector with known mean $\bar p$ and covariance $\Sigma$. Therefore with portfolio $x\in\mathbb{R}^n$, the return $r$ is a (scalar) random variable with mean $\bar p^Tx$ and variance $x^T\Sigma x$. The choice of portfolio $x$ involves a trade-off between the mean of the return, and its variance.
+
+The classical portfolio optimization problem, introduced by Markowitz, is the QP
+$$
+\begin{align*}
+\text{minimize} &\qquad x^T\Sigma x \\
+\text{subject to} &\qquad \bar p^Tx\geq r_\text{min} \\
+&\qquad \mathbf{1}^Tx=1, \quad x\succeq 0.
+\end{align*}
+$$
+Many extensions are possible, see p.156.
+
+
+
+#### 4.4.2 Second-order cone programming
+
+A problem that is closely related to QP is the **second-order cone program (SOCP)**
+$$
+\begin{align*}
+\text{minimize} &\qquad f^Tx \\
+\text{subject to} &\qquad \|A_ix+b\|_2 \leq c_i^Tx+d, \quad 1\leq i\leq m \\
+&\qquad Fx=g,
+\end{align*} \tag{4.36}
+$$
+where $A_i\in\mathbb{R}^{n_i\times n}$ and $F\in\mathbb{R}^{p\times n}$. We call a constraint of the form
+$$
+\|Ax+b\|_2 \leq c^Tx+d
+$$
+where $A\in\mathbb{R}^{k\times n}$, a **second-order cone constraint**, since it is the same as requiring the affine function $(Ax+b, c^Tx+d)$ to lie in the **second-order cone** $\mathcal{C}_{k+1}=\{(x,t)\mid x\in\mathbb{R}^k,\,t\in\mathbb{R},\,\|x\|_2\leq t\}\subseteq\mathbb{R}^{k+1}$​​.
+
+Notice that **LP** $\subset$ **QP** $\subset$ **QCQP** $\subset$ **SOCP**. When $c_i=0$ for $1\leq i\leq m$, the SOCP (4.36) is equivalent to a QCQP. Similarly, if $A_i=0$ for $1\leq i\leq m$, the SOCP (4.36) reduces to a (general) LP.
+
+
+
+##### Robust linear programming
+
+We consider a LP in equality form
+$$
+\begin{align*}
+\text{minimize} &\qquad c^Tx \\
+\text{subject to} &\qquad a_i^Tx\leq b_i, \quad 1\leq i\leq m.
+\end{align*}
+$$
+in which there is some <u>uncertainty or variation</u> in the parameters $c,a_i,b_i$.
+
+To simplify the exposition, we assume that $c$ and $b_i$ are fixed, and that
+$$
+a_i \in \mathcal{E}_i=\{\bar a_i+P_iu\mid \|u\|_2\leq 1\},
+$$
+where $P_i\in\mathbb{R}^{n\times n}$. (If $P_i$ is singular, we obtain "flat" ellipsoids of dimension $\operatorname{rank}P_i$; $P_i=0$ means that $a_i$​ is known perfectly.)
+
+We require that the constraints be satisfied for all possible values of the parameters $a_i$, which leads us to the **robust linear program**
+$$
+\begin{align*}
+\text{minimize} &\qquad c^Tx \\
+\text{subject to} &\qquad a_i^Tx\leq b_i \text{ for all $a_i\in\mathcal{E}_i$}, \quad 1\leq i\leq m.
+\end{align*} \tag{4.37}
+$$
+The **robust linear constraint** can be expressed as a second-order cone constraint
+$$
+\begin{align*}
+\sup\{a_i^Tx\mid a_i\in\mathcal{E}_i\} &= \bar a_i^Tx + \sup\{u^TP_i^Tx\mid\|u\|_2\leq 1\} \\
+&= \bar a_i^Tx + \|P_i^Tx\|_2 \leq b_i.
+\end{align*}
+$$
+Hence the robust LP (4.37) can be expressed as the SOCP
+$$
+\begin{align*}
+\text{minimize} &\qquad c^Tx \\
+\text{subject to} &\qquad \bar a_i^Tx + \|P_i^Tx\|_2\leq b_i, \quad 1\leq i\leq m.
+\end{align*}
+$$
+Note that the additional norm terms act as **regularization terms**; they prevent $x$ from being large in directions with considerable uncertainty in the parameters $a_i$.
+
+
+
+##### Linear programming with random constraints
+
+The robust LP described above can also be considered in a statistical framework.
+
+Suppose that $a_i$ are <u>independent Gaussian</u> random vectors, with mean $\bar a_i$ and covariance $\Sigma_i$. 
+
+For $\eta\geq 0.5$, the problem
+$$
+\begin{align*}
+\text{minimize} &\qquad c^Tx \\
+\text{subject to} &\qquad \operatorname{prob}(a_i^Tx \leq b_i) \geq \eta, \quad 1\leq i\leq m
+\end{align*}
+$$
+can be expressed as the SOCP
+$$
+\begin{align*}
+\text{minimize} &\qquad c^Tx \\
+\text{subject to} &\qquad \bar a_i^Tx + \Phi^{-1}(\eta)\|\Sigma_i^{1/2}x\|_2 \leq b_i, \quad 1\leq i\leq m,
+\end{align*}
+$$
+where $\Phi(z)$ is the cumulative distribution of a zero mean unit variance Gaussian random variable. Note that $\Phi^{-1}(\eta)\geq 0$ by assumption that $\eta\geq 0.5$. (See p.158 for proof.)
+
+<figure style="text-align: left; padding-top: .5em; padding-bottom: .5em;">
+<img src="figures/CO_example_4.8.png" style="zoom:80%;" />
+</figure>
+
+
+
+##### Minimal surface
+
+Consider a differentiable function $f\colon\mathbb{R}^2\to\mathbb{R}$ with $\operatorname{Dom}f=C$. The **surface area** of its graph is given by
+$$
+A = \int_C \sqrt{1+\|\nabla f(x)\|_2^2}\,dx = \int_C \|(\nabla f(x),1)\|_2\,dx,
+$$
+which is a convex functional of $f$.
+
+The **minimal surface problem** is to find $f$ that minimizes $A$ subject to some constraints, for example, some given values of $f$ on the boundary of $C$​.
+
+Let $C=[0,1]^2$ and denote by $f_{i,j}=f(\frac{i}{K},\frac{j}{K})$ for $0\leq i,j\leq K$. Then approximate expressions for $\nabla f$ and $A$ are
+$$
+\nabla f(x) \approx K \begin{bmatrix} f_{i+1,j}-f_{i,j} \\ f_{i,j+1}-f_{i,j} \end{bmatrix} \quad\text{and}\quad
+A \approx A_\text{disc} = \frac{1}{K^2}\sum_{i,j} \left\| \begin{bmatrix} K(f_{i+1,j}-f_{i,j}) \\ K(f_{i,j+1}-f_{i,j}) \\ 1 \end{bmatrix} \right\|_2.
+$$
+The discretized are approximation $A_\text{disc}$ is a convex function of $f_{i,j}$.
+
+As an example, we consider the problem of finding the minimal area surface with fixed boundary values $l_j$ on the left and $r_j$ on the right edges of the square
+$$
+\begin{align*}
+\text{minimize} &\qquad A_{disc} \\
+\text{subject to} &\qquad f_{0,j} = l_j, \quad 0\leq j\leq K \\
+&\qquad f_{K,j} = r_j, \quad 0\leq j\leq K.
+\end{align*} \tag{4.40}
+$$
+We can transform (4.40) into an SOCP by introducing new variables $t_{i,j}$​
+$$
+\begin{align*}
+\text{minimize} &\qquad \frac{1}{K^2}\sum_{i,j} t_{i,j} \\
+\text{subject to} &\qquad \left\| \begin{bmatrix} K(f_{i+1,j}-f_{i,j}) \\ K(f_{i,j+1}-f_{i,j}) \\ 1 \end{bmatrix} \right\|_2 \leq t_{i,j}, \quad 0\leq i,j\leq K \\
+&\qquad f_{0,j} = l_j, \quad 0\leq j\leq K \\
+&\qquad f_{K,j} = r_j, \quad 0\leq j\leq K.
+\end{align*}
+$$
