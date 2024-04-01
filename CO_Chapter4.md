@@ -847,7 +847,7 @@ The objective function $f_0(x)$ is the pointwise maximum of $r$​​ quasiconve
 </figure>
 
 
-### 4,4 Quadratic optimization problems
+### 4.4 Quadratic optimization problems
 
 The convex optimization problem (4.15) is called a **quadratic program (QP)** if the objective $f_0$​ is (convex) <u>quadratic</u>, and the constraint functions are <u>affine</u>.
 $$
@@ -994,7 +994,7 @@ A problem that is closely related to QP is the **second-order cone program (SOCP
 $$
 \begin{align*}
 \text{minimize} &\qquad f^Tx \\
-\text{subject to} &\qquad \|A_ix+b\|_2 \leq c_i^Tx+d, \quad 1\leq i\leq m \\
+\text{subject to} &\qquad \|A_ix+b_i\|_2 \leq c_i^Tx+d_i, \quad 1\leq i\leq m \\
 &\qquad Fx=g,
 \end{align*} \tag{4.36}
 $$
@@ -1112,3 +1112,254 @@ $$
 &\qquad f_{K,j} = r_j, \quad 0\leq j\leq K.
 \end{align*}
 $$
+
+
+
+### 4.5 Geometric programming
+
+#### 4.5.1 Monomials and posynomials
+
+A function $f\colon\mathbb{R}^n_{\succeq 0}\to\mathbb{R}$ defined as $f(x)=cx_1^{a_1}x_2^{a_2}\dotsb x_n^{a_n}$ where $c>0$ and $a_i\in\mathbb{R}$​ is called a **monomial** function. <u>Monomials are closed under multiplication and division</u>.
+
+A finite sum of monomials $f(x)=\sum_{k=1}^K c_kx_1^{a_{1k}}x_2^{a_{2k}}\dotsb x_n^{a_{nk}}$ where $c_k>0$ is called a **posynomial** function (with $K$​​ terms). <u>Posynomials are closed under addition, multiplication, and nonnegative scaling</u>.
+
+If a posynomial is multiplied (or divided) by a monomial, the result is a posynomial.
+
+
+
+#### 4.5.2 Geometric programming
+
+An optimization problem of the form
+$$
+\begin{align*}
+\text{minimize} &\qquad f_0(x) \\
+\text{subject to} &\qquad f_i(x)\leq 1, \quad 1\leq i\leq m \\
+&\qquad h_j(x)=1, \quad 1\leq j\leq p,
+\end{align*} \tag{4.43}
+$$
+where $f_i$ are posynomials for $0\leq i\leq m$ and $h_j$ are monomials for $1\leq j\leq p$​, is called a **geometric program (GP) (in posynomial form)**.
+
+The domain of this problem is $\mathcal{D}=\mathbb{R}^n_{\succ 0}$ because of $h_j(x)=1$ so that the constraint $x\succeq 0$ is implicit.
+
+
+
+##### Extensions of geometric programming
+
+If $f$ is a posynomial and $h$ is a (nonzero) monomial, then the constraint $f(x)\leq h(x)$ can be handled by expressing it as $f(x)/h(x)\leq 1$​.
+
+In a similar way, if $h_1$ and $h_2$ are both (nonzero) monomial functions, then we can handle the equality constraint $h_1(x)=h_2(x)$ by expressing it as $h_1(x)/h_2(x)=1$​.
+
+We can maximize a (nonzero) monomial objective function, by minimizing its inverse.
+
+
+
+#### 4.5.3 Geometric program in convex form
+
+Geometric programs are not (in general) convex optimization problems, but they can be <u>transformed to convex problems</u> by a change of variables and a transformation of the objective and constraint functions.
+
+- The change of variables $y_i=\log x_i$ so $x_i=e^{y_i}$ turns <u>a monomial function into the exponential of an affine function</u>. ($\because$) $f(x)=cx_1^{a_1}x_2^{a_2}\dotsb x_n^{a_n}=e^{a^Ty+b}$, where $b=\log c$
+- Similarly, <u>a posynomial becomes a sum of exponentials of affine functions</u>.
+
+We transform the objective and constraints of (4.43) by taking the logarithm.
+$$
+\begin{align*}
+\text{minimize} &\qquad \tilde f_0(y) = \log\Bigl( \sum_k e^{a_{0k}^Ty+b_{0k}}\Bigr) \\
+\text{subject to} &\qquad \tilde f_i(y) = \log\Bigl( \sum_k e^{a_{ik}^Ty+b_{ik}}\Bigr) \leq 0, \quad 1\leq i\leq m \\
+&\qquad \tilde h_j(y) = g_j^Ty + h_j = 0, \quad 1\leq j\leq p,
+\end{align*} \tag{4.44}
+$$
+Since $\tilde f_i$ are convex (see $\S$3.1.5 Examples, **Log-sum-exp**) and $\tilde h_j$​​ are affine, this problem is a convex optimization problem, called a **geometric program in convex form**.
+
+If the posynomial objective and constraints all are monomials, then (4.44) reduces to a (general) linear program. We can therefore consider <u>GP to be a generalization or extension of LP</u>.
+
+
+
+#### 4.5.4 Examples
+
+##### Frobenius norm diagonal scaling
+
+Consider a matrix $M\in\mathbb{R}^{n\times n}$, and a linear function $y=Mu$.
+
+Suppose we <u>scale the coordinates</u>, $\tilde u=Du$, where $D=\operatorname{diag}(d)$ is diagonal with $d_i>0$. In the new coordinates $y=Mu$ is given by $\tilde y=Dy=DMD^{-1}\tilde u$​.
+
+We want to choose the scaling in such a way that $DMD^{-1}$ is small. We will use the **Frobenius norm** (squared) to measure the size of the matrix.
+$$
+\|DMD^{-1}\|_F^2 \equiv \operatorname{tr}\bigl[(DMD^{-1})^T(DMD^{-1})\bigr] = \sum_{i,j}(DMD^{-1})_{ij}^2 = \sum_{i,j}M_{ij}^2d_i^2/d_j^2
+$$
+Since this is a posynomial in $d$, the problem of choosing the scaling $d$ to minimize the Frobenius norm is an <u>unconstrained GP</u>
+$$
+\text{minimize} \qquad \sum_{i,j} M_{ij}^2d_i^2d_j^{-2}.
+$$
+
+
+##### Design of a cantilever beam (skip)
+
+
+
+##### Minimizing spectral radius via Perron-Frobenius theory (skip)
+
+
+
+### 4.6 Generalized inequality constraints
+
+> A set $C$ is called a **cone** if $\theta x\in C$ for all $x\in C$ and $\theta>0$​.
+>
+> A cone $K\subseteq\mathbb{R}^n$ is called a **proper cone** if
+>
+> - $K$ is convex, closed, solid (has nonempty interior), and pointed (contains no line).
+>
+> A proper cone $K$ can be used to define a **generalized inequality**, which is a partial ordering on $\mathbb{R}^n$ defined by $x \preceq_K y \iff y - x \in K$.
+>
+> Similarly, we define a strict partial ordering $x\prec_K y\iff y-x\in\operatorname{int}K$​.
+>
+> When $K=\mathbb{R}_{\geq 0}$, the partial ordering $\preceq_K$ is the usual ordering $\leq$ on $\mathbb{R}$, and the strict partial ordering $\prec_K$ is the same as the usual strict ordering $<$ on $\mathbb{R}$. (See $\S$2.4.1.)
+
+A (standard form) **convex optimization problem with generalized inequality constraints** is
+$$
+\begin{align*}
+\text{minimize} &\qquad f_0(x) \\
+\text{subject to} &\qquad f_i(x) \preceq_{K_i} 0, \quad 1\leq i\leq m \\
+&\qquad Ax=b,
+\end{align*} \tag{4.48}
+$$
+where $f_0\colon\mathbb{R}^n\to\mathbb{R}$ and $f_i\colon\mathbb{R}^n\to\mathbb{R}^{k_i}$ with proper cones $K_i\subseteq\mathbb{R}^{k_i}$ for $1\leq i\leq m$​.
+
+Problem (4.15) is a special case with $K_i=\mathbb{R}_{\geq 0}$ for $1\leq i\leq m$.
+
+Many of the results for ordinary convex optimization problems hold for problems with generalized inequalities.
+
+- The feasible set, any sublevel set, and the optimal set are convex.
+- Any point that is locally optimal for (4.48) is globally optimal.
+- The optimality condition for differentiable $f_0$ holds without any change.
+- Convex optimization problems with generalized inequality constraints can often be solved as easily as ordinary convex optimization problems. (See Chapter 11. **Interior-point methods**.)
+
+
+
+#### 4.6.1 Conic form problems
+
+$$
+\begin{align*}
+\text{minimize} &\qquad c^Tx \\
+\text{subject to} &\qquad Fx+g \preceq_{K} 0 \\
+&\qquad Ax=b.
+\end{align*} \tag{4.49}
+$$
+
+When $K=\mathbb{R}^m_{\succeq 0}$, the nonnegative orthant, (4.48) reduces to a LP. We can view conic form problems as a generalization of LP.
+
+
+
+#### 4.6.2 Semidefinite programming
+
+When $K=\mathbb{R}^{k\times k}_{\succeq 0}$, the cone of positive semidefinite $k\times k$ matrices, (4.49) is called a **semidefinite program (SDP)**
+$$
+\begin{align*}
+\text{minimize} &\qquad c^Tx \\
+\text{subject to} &\qquad x_1F_1 + \dotsb + x_nF_n + G \preceq 0 \\
+&\qquad Ax=b,
+\end{align*} \tag{4.50}
+$$
+where $G,F_1,\dotsc,F_n\in\mathbb{R}^{k\times k}_\text{sym}$, and $A\in\mathbb{R}^{p\times n}$.
+
+If the matrices $G,F_1,\dotsc,F_n$ are all diagonal, the linear matrix inequality (LMI) is equivalent to a set of $n$ linear inequalities, and (4.50) reduces to a LP.
+
+
+
+##### Standard and inequality form semidefinite programs
+
+> Recall that $\operatorname{tr}(CX)=\sum_{i,j}C_{ij}X_{ij}$ is the form of a general real-valued linear function on $\mathbb{R}^{n\times n}_\text{sym}$.
+
+A **standard form SDP** has linear equality constraints and a (matrix) nonnegativity constraint on $X\in\mathbb{R}^{n\times n}_\text{sym}$.
+$$
+\begin{align*}
+\text{minimize} &\qquad \operatorname{tr}(CX) \\
+\text{subject to} &\qquad \operatorname{tr}(A_iX) = b_i, \quad 1\leq i\leq p \\
+&\qquad X\succeq 0,
+\end{align*} \tag{4.51}
+$$
+where $C,A_1,\dotsc,A_p\in\mathbb{R}^{n\times n}_\text{sym}$​.
+
+An **inequality form SDP** has no equality constraints and one LMI.
+$$
+\begin{align*}
+\text{minimize} &\qquad c^Tx \\
+\text{subject to} &\qquad x_1A_1+\dotsb+x_nA_n \preceq B,
+\end{align*}
+$$
+where $B,A_1,\dotsc,A_n\in\mathbb{R}^{n\times n}_\text{sym}$ and $c\in\mathbb{R}^n$.
+
+
+
+##### Multiple LMIs and linear inequalities
+
+$$
+\begin{align*}
+\text{minimize} &\qquad c^Tx \\
+\text{subject to} &\qquad F^{(i)}(x) = x_1F_1^{(i)}+\dotsb+x_nF_n^{(i)}+G^{(i)} \preceq 0, \quad 1\leq i\leq K \\
+&\qquad Gx\preceq h, \quad Ax=b.
+\end{align*}
+$$
+
+has linear objective, linear inequality and inequality constraints, and several LMI constraints.
+
+Such problems are readily transformed into an SDP, by forming a large block diagonal LMI from the individual LMIs and linear inequalities.
+$$
+\begin{align*}
+\text{minimize} &\qquad c^Tx \\
+\text{subject to} &\qquad \operatorname{diag}\bigl(Gx-h,F^{(1)}(x),\dotsc,F^{(K)}(x)\bigr) \preceq 0 \\
+&\qquad Ax=b.
+\end{align*}
+$$
+
+
+#### 4.6.3 Examples
+
+##### Second-order cone program
+
+The **SOCP** (4.36) can be expressed as a <u>conic form problem</u>
+$$
+\begin{align*}
+\text{minimize} &\qquad c^Tx \\
+\text{subject to} &\qquad -(A_ix+b_i,c_i^Tx+d_o) \preceq_{K_i} 0, \quad 1\leq i\leq m \\
+&\qquad Fx\preceq g,
+\end{align*}
+$$
+where $K_i=\bigl\{ (y,t)\in\mathbb{R}^{n_i+1} \bigm| \|y\|_2\leq t \bigr\}$, i.e., the second-order cone in $\mathbb{R}^{n_i+1}$​.
+
+
+
+##### Matrix norm minimization
+
+Let $A(x)=A_0+x_1A_1+\dotsb+x_nA_n$, where $A_i\in\mathbb{R}^{p\times q}$. The unconstrained problem, minimizing $\|A(x)\|_2$, where $\|\cdot\|_2$​ denotes the spectral norm (maximum singular value), is a convex problem. (See Example 3.11, **Norm of a matrix**.)
+
+Using the fact $\|A\|_2\leq s$ if and only if $A^TA\preceq s^2I$ (and $s\geq 0$), we can express the problem in the form
+$$
+\begin{align*}
+\text{minimize} &\qquad s \\
+\text{subject to} &\qquad A(x)^TA(x) \preceq sI.
+\end{align*}
+$$
+Since $A(x)^TA(x)-sI$ is matrix convex in $(x,s)$, this is a convex optimization problem with a single $q\times q$ matrix inequality constraint.
+
+We can also formulate the problem using a single LMI of size $(p+q)\times(p+q)$, using the fact that
+$$
+A^TA \preceq t^2 I \text{ (and $t\geq 0$)} \iff \begin{bmatrix}tI&A\\A^T&tI\end{bmatrix} \succeq 0.
+$$
+This results in the SDP
+$$
+\begin{align*}
+\text{minimize} &\qquad t \\
+\text{subject to} &\qquad \begin{bmatrix} tI & A(x) \\ A(x)^T & tI \end{bmatrix} \succeq 0.
+\end{align*}
+$$
+
+
+##### Moment problems (skip)
+
+
+
+##### Bounding portfolio risk with incomplete covariance information (skip)
+
+
+
+##### Fastest mixing Markov chain on a graph (skip)
