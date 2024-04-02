@@ -566,7 +566,7 @@ $$
 $$
 where $f_0$ is <u>quasiconvex</u> and $f_i$ are <u>convex</u> for $1\leq i\leq m$.
 
-In a similar way, if $f_0$ in a concave optimization problem (4.16) is <u>quasiconcave</u>, we have a (standard form) **quasiconcave optimization problem**
+Similarly, we have a (standard form) **quasiconcave optimization problem**
 $$
 \begin{align*}
 \text{maximize}  &\qquad f_0(x) \\
@@ -594,7 +594,7 @@ A quasiconvex optimization problem can have <u>locally optimal solutions that ar
 > $$
 > <img src="figures/CO_figure_3.12.png" style="zoom:80%;" />
 
-> In a convex optimization problem, $x$ is optimal <u>if and only if</u> $x$ is feasible and
+> Recall that, in a convex optimization problem, $x$ is optimal <u>if and only if</u> $x$ is feasible and
 > $$
 > \nabla f_0(x)^T(y-x) \geq 0 \quad\text{for all feasible $y$} \tag{4.21}
 > $$
@@ -610,6 +610,10 @@ $$
 
 
 ##### Quasiconvex optimization via convex feasibility problems
+
+__Reference:__ A. Agrawal and S. Boyd, _Disciplined quasiconvex programming_, Optimization Letters (2020) 14:1643-1657. https://web.stanford.edu/~boyd/papers/dqcp.html
+
+
 
 > If $f$ is quasiconvex, there exists a <u>family of convex functions</u> $\phi_t$ such that
 > $$
@@ -650,7 +654,9 @@ It follows that exactly $k=\lceil\log_2((u-l)/\epsilon)\rceil$ iterations are re
 
 ### 4.3 Linear optimization problems
 
-If the objective and all constraint functions are <u>affine</u>, the problem is called a **linear program (LP)**. A <u>general linear program</u> has the form
+If the objective and all constraint functions are <u>affine</u>, the problem is called a **linear program (LP)**. Linear programs are, of course, convex optimization problems.
+
+A <u>general linear program</u> has the form
 $$
 \begin{align*}
 \text{minimize} &\qquad c^Tx + d \\
@@ -658,7 +664,7 @@ $$
 &\qquad Ax=b,
 \end{align*} \tag{4.27}
 $$
-where $G\in\mathbb{R}^{m\times n}$ and $A\in\mathbb{R}^{p\times n}$. Linear programs are, of course, convex optimization problems.
+where $G\in\mathbb{R}^{m\times n}$ and $A\in\mathbb{R}^{p\times n}$.
 
 It is common to <u>omit the constant</u> $d$ in the objective function, since it does not affect the optimal set.
 
@@ -726,6 +732,7 @@ $$
 &\qquad x\succeq 0.
 \end{align*}
 $$
+
 
 
 ##### Chebyshev center of a polyhedron
@@ -796,7 +803,7 @@ $$
 \begin{align*}
 \text{minimize} &\qquad f_0(x) \\
 \text{subject to} &\qquad Gx\preceq h \\
-&\qquad Ax=b
+&\qquad Ax=b,
 \end{align*} \tag{4.32}
 $$
 where $f_0(x)=\dfrac{c^Tx+d}{e^Tx+f}$ and $\operatorname{Dom}f_0=\{x\mid e^Tx+f>0\}$​​.
@@ -805,7 +812,7 @@ where $f_0(x)=\dfrac{c^Tx+d}{e^Tx+f}$ and $\operatorname{Dom}f_0=\{x\mid e^Tx+f>
 > <img src="figures/CO_example_3.32.png" style="zoom:80%;" />
 > </figure>
 
-The objective function $f_0$​ is quasiconvex (in fact, quasilinear) so (4.32) is a <u>quasiconvex optimization problem</u>.
+The objective function $f_0$​ is quasiconvex (in fact, quasilinear) so <u>(4.32) is a quasiconvex optimization problem</u>.
 
 
 
@@ -836,7 +843,7 @@ A generalization of (4.32) is the **generalized linear-fractional program** in w
 $$
 f_0(x) = \max_{1\leq i\leq r}\frac{c_i^Tx+d_i}{e_i^Tx+f_i}, \quad \operatorname{Dom}f_0 = \{x\mid e_i^Tx+f_i>0\text{ for $1\leq i\leq r$}\}.
 $$
-The objective function $f_0(x)$ is the pointwise maximum of $r$​​ quasiconvex functions, and therefore quasiconvex, so this problem is quasiconvex.
+The objective function $f_0(x)$ is the pointwise maximum of $r$​​ quasiconvex functions, and therefore quasiconvex, so <u>this problem is quasiconvex</u>.
 
 > A <u>nonnegative weighted maximum of quasiconvex functions</u>, i.e., $f=\max\{w_1f_1,\dotsc,w_mf_m\}$ with $w_i\geq0$ and $f_i$ quasiconvex, <u>is quasiconvex</u>, (see $\S$3.4.4.)
 >
@@ -849,7 +856,7 @@ The objective function $f_0(x)$ is the pointwise maximum of $r$​​ quasiconve
 
 ### 4.4 Quadratic optimization problems
 
-The convex optimization problem (4.15) is called a **quadratic program (QP)** if the objective $f_0$​ is (convex) <u>quadratic</u>, and the constraint functions are <u>affine</u>.
+The convex optimization problem (4.15) is called a **quadratic program (QP)** if the objective $f_0$​ is (convex) <u>quadratic</u>, and the constraints are <u>affine</u>.
 $$
 \begin{align*}
 \text{minimize} &\qquad \tfrac{1}{2}x^TPx + q^Tx + r \\
@@ -861,7 +868,7 @@ where $P\in\mathbb{R}^{n\times n}_{\succeq 0}$, $G\in\mathbb{R}^{m\times n}$, an
 
 <img src="figures/CO_figure_4.5.png" style="zoom:80%;" />
 
-If the objective in (4.15) as well as the inequality constraint functions are (convex) quadratic, the problem is called a **quadratically constrained quadratic program (QCQP)**.
+If the inequality constraints in (4.34) are also (convex) quadratic, the problem is called a **quadratically constrained quadratic program (QCQP)**. Notice that **LP** $\subset$ **QP** $\subset$ **QCQP**.
 $$
 \begin{align*}
 \text{minimize} &\qquad \tfrac{1}{2}x^TP_0x + q_0^Tx + r_0 \\
@@ -869,7 +876,7 @@ $$
 &\qquad Ax=b,
 \end{align*} \tag{4.35}
 $$
-where $P_i\in\mathbb{R}^{n\times n}_{\succeq 0}$ and $A\in\mathbb{R}^{p\times n}$​. Notice that **LP** $\subset$ **QP** $\subset$ **QCQP**.
+where $P_i\in\mathbb{R}^{n\times n}_{\succeq 0}$ and $A\in\mathbb{R}^{p\times n}$​.
 
 
 
@@ -998,13 +1005,18 @@ $$
 &\qquad Fx=g,
 \end{align*} \tag{4.36}
 $$
-where $A_i\in\mathbb{R}^{n_i\times n}$ and $F\in\mathbb{R}^{p\times n}$. We call a constraint of the form
+where $A_i\in\mathbb{R}^{n_i\times n}$ and $F\in\mathbb{R}^{p\times n}$.
+
+We call a constraint of the form
 $$
 \|Ax+b\|_2 \leq c^Tx+d
 $$
-where $A\in\mathbb{R}^{k\times n}$, a **second-order cone constraint**, since it is the same as requiring the affine function $(Ax+b, c^Tx+d)$ to lie in the **second-order cone** $\mathcal{C}_{k+1}=\{(x,t)\mid x\in\mathbb{R}^k,\,t\in\mathbb{R},\,\|x\|_2\leq t\}\subseteq\mathbb{R}^{k+1}$​​.
+where $A\in\mathbb{R}^{k\times n}$, a **second-order cone constraint**. ($\because$) It is the same as requiring the affine function $(Ax+b, c^Tx+d)$ to lie in the **second-order cone** $\mathcal{C}_{k+1}=\{(x,t)\mid x\in\mathbb{R}^k,\,t\in\mathbb{R},\,\|x\|_2\leq t\}\subseteq\mathbb{R}^{k+1}$​​.
 
-Notice that **LP** $\subset$ **QP** $\subset$ **QCQP** $\subset$ **SOCP**. When $c_i=0$ for $1\leq i\leq m$, the SOCP (4.36) is equivalent to a QCQP. Similarly, if $A_i=0$ for $1\leq i\leq m$, the SOCP (4.36) reduces to a (general) LP.
+Notice that **LP** $\subset$ **QP** $\subset$ **QCQP** $\subset$ **SOCP** when the objective is linear.
+
+- When $c_i=0$ for $1\leq i\leq m$, the SOCP (4.36) is equivalent to a QCQP.
+- If $A_i=0$ for $1\leq i\leq m$, the SOCP (4.36) reduces to a (general) LP.
 
 
 
@@ -1119,9 +1131,9 @@ $$
 
 #### 4.5.1 Monomials and posynomials
 
-A function $f\colon\mathbb{R}^n_{\succeq 0}\to\mathbb{R}$ defined as $f(x)=cx_1^{a_1}x_2^{a_2}\dotsb x_n^{a_n}$ where $c>0$ and $a_i\in\mathbb{R}$​ is called a **monomial** function. <u>Monomials are closed under multiplication and division</u>.
+A function $f\colon\mathbb{R}^n_{\succ 0}\to\mathbb{R}$ defined as $f(x)=cx_1^{a_1}x_2^{a_2}\dotsb x_n^{a_n}$ where $c>0$ and $a_i\in\mathbb{R}$​ is called a **monomial** function. <u>Monomials are closed under multiplication and division</u>.
 
-A finite sum of monomials $f(x)=\sum_{k=1}^K c_kx_1^{a_{1k}}x_2^{a_{2k}}\dotsb x_n^{a_{nk}}$ where $c_k>0$ is called a **posynomial** function (with $K$​​ terms). <u>Posynomials are closed under addition, multiplication, and nonnegative scaling</u>.
+A finite sum of monomials $f(x)=\sum_{k=1}^K c_kx_1^{a_{1k}}x_2^{a_{2k}}\dotsb x_n^{a_{nk}}$ where $c_k>0$ is called a **posynomial** function. <u>Posynomials are closed under addition, multiplication, and nonnegative scaling</u>.
 
 If a posynomial is multiplied (or divided) by a monomial, the result is a posynomial.
 
@@ -1139,38 +1151,71 @@ $$
 $$
 where $f_i$ are posynomials for $0\leq i\leq m$ and $h_j$ are monomials for $1\leq j\leq p$​, is called a **geometric program (GP) (in posynomial form)**.
 
-The domain of this problem is $\mathcal{D}=\mathbb{R}^n_{\succ 0}$ because of $h_j(x)=1$ so that the constraint $x\succeq 0$ is implicit.
+The domain of this problem is $\mathcal{D}=\mathbb{R}^n_{\succ 0}$ so that the constraint $x\succeq 0$ is implicit.
 
 
 
 ##### Extensions of geometric programming
 
-If $f$ is a posynomial and $h$ is a (nonzero) monomial, then the constraint $f(x)\leq h(x)$ can be handled by expressing it as $f(x)/h(x)\leq 1$​.
+- If $f$ is a posynomial and $h$ is a monomial, then the constraint $f(x)\leq h(x)$ can be handled by expressing it as $f(x)/h(x)\leq 1$​.
+- If $h_1$ and $h_2$ are both monomial functions, then the constraint $h_1(x)=h_2(x)$ can be handled by expressing it as $h_1(x)/h_2(x)=1$​.
 
-In a similar way, if $h_1$ and $h_2$ are both (nonzero) monomial functions, then we can handle the equality constraint $h_1(x)=h_2(x)$ by expressing it as $h_1(x)/h_2(x)=1$​.
-
-We can maximize a (nonzero) monomial objective function, by minimizing its inverse.
-
+We can <u>maximize a monomial objective function</u>, by minimizing its inverse.
 
 
-#### 4.5.3 Geometric program in convex form
 
-Geometric programs are not (in general) convex optimization problems, but they can be <u>transformed to convex problems</u> by a change of variables and a transformation of the objective and constraint functions.
+#### 4.5.3 Log-log convex programming
 
-- The change of variables $y_i=\log x_i$ so $x_i=e^{y_i}$ turns <u>a monomial function into the exponential of an affine function</u>. ($\because$) $f(x)=cx_1^{a_1}x_2^{a_2}\dotsb x_n^{a_n}=e^{a^Ty+b}$, where $b=\log c$
-- Similarly, <u>a posynomial becomes a sum of exponentials of affine functions</u>.
+__Reference:__ A. Agrawal and S. Boyd, _Differentiating through Log-Log Convex Programs_, Manuscript posted April 2020. https://web.stanford.edu/~boyd/papers/diff_dgp.html
 
-We transform the objective and constraints of (4.43) by taking the logarithm.
+
+
+##### Log-log transformation
+
+For $f\colon D\subseteq\mathbb{R}^n_{\succ 0}\to\mathbb{R}_{>0}$, its **log-log transformation** is defined by $F=\log\circ f\circ\exp\colon\mathbb{R}^n\to\mathbb{R}$.
+
+- If $f(x)=cx_1^{a_1}x_2^{a_2}\dotsb x_n^{a_n}$ is a monomial, $F(y)=a^Ty+\log c$ is affine.
+- If $f$ is a posynomial, $F(y)=\log\sum_k c_k e^{a_k^Ty}$ is (the log of) a signomial, which is convex (see $\S$3.1.5 Examples, **Log-sum-exp**).
+
+
+
+##### Log-log curvature
+
+A function $f\colon D\subseteq\mathbb{R}^n_{\succ 0}\to\mathbb{R}_{>0}$ is called
+
+- **log-log convex** if $f(x^\theta\odot y^{1-\theta}) \leq f(x)^\theta\odot f(y)^{1-\theta}$ for all $x,y\in D$ and $\theta\in[0,1]$​.
+- **log-log concave** if $f(x^\theta\odot y^{1-\theta}) \geq f(x)^\theta\odot f(y)^{1-\theta}$ for all $x,y\in D$ and $\theta\in[0,1]$.
+- **log-log affine** if $f(x^\theta\odot y^{1-\theta}) = f(x)^\theta\odot f(y)^{1-\theta}$ for all $x,y\in D$ and $\theta\in[0,1]$​.
+
+Here, $\odot$ is the elementwise product and powers meant elementwise.
+
+The log-log transformation $F$ is convex, concave, or affine if $f$​ is log-log convex, log-log concave, or log-log affine, respectively.
+
+A log-log convex function is convex on a [log-log plot](https://en.wikipedia.org/wiki/Log%E2%80%93log_plot).
+
+<img src="figures/CO_log-log_convex_functions.png" style="zoom:80%;" />
+
+
+
+##### Log-log convex program
+
+A **log-log convex program (LLCP)** (or a **GP in convex form**) has the standard form
 $$
 \begin{align*}
-\text{minimize} &\qquad \tilde f_0(y) = \log\Bigl( \sum_k e^{a_{0k}^Ty+b_{0k}}\Bigr) \\
-\text{subject to} &\qquad \tilde f_i(y) = \log\Bigl( \sum_k e^{a_{ik}^Ty+b_{ik}}\Bigr) \leq 0, \quad 1\leq i\leq m \\
-&\qquad \tilde h_j(y) = g_j^Ty + h_j = 0, \quad 1\leq j\leq p,
+\text{minimize} &\qquad f_0(x) \\
+\text{subject to} &\qquad f_i(x)\leq 1, \quad 1\leq i\leq m \\
+&\qquad h_j(x) = 1, \quad 1\leq j\leq p,
 \end{align*} \tag{4.44}
 $$
-Since $\tilde f_i$ are convex (see $\S$3.1.5 Examples, **Log-sum-exp**) and $\tilde h_j$​​ are affine, this problem is a convex optimization problem, called a **geometric program in convex form**.
+where $f_i$ are <u>log-log convex</u> for $0\leq i\leq m$, and $h_j$​ are <u>log-log affine</u> for $1\leq j\leq p$.
 
-If the posynomial objective and constraints all are monomials, then (4.44) reduces to a (general) linear program. We can therefore consider <u>GP to be a generalization or extension of LP</u>.
+The program (4.44) is not convex, but <u>it can be readily transformed to a convex optimization problem</u>.
+
+- We make the change of variables $y=\log x$.
+- Replace each $f$ with its log-log transformation defined by $F(y)=\log f(e^y)$.
+- Replace the right-hand sides of the constraints with $0$.
+
+If the posynomial objective and constraints all are monomials, then the program (4.44) reduces to a (general) linear program. We can therefore consider <u>GP to be a generalization or extension of LP</u>.
 
 
 
@@ -1190,6 +1235,7 @@ Since this is a posynomial in $d$, the problem of choosing the scaling $d$ to mi
 $$
 \text{minimize} \qquad \sum_{i,j} M_{ij}^2d_i^2d_j^{-2}.
 $$
+
 
 
 ##### Design of a cantilever beam (skip)
@@ -1312,6 +1358,7 @@ $$
 $$
 
 
+
 #### 4.6.3 Examples
 
 ##### Second-order cone program
@@ -1352,6 +1399,7 @@ $$
 \text{subject to} &\qquad \begin{bmatrix} tI & A(x) \\ A(x)^T & tI \end{bmatrix} \succeq 0.
 \end{align*}
 $$
+
 
 
 ##### Moment problems (skip)
